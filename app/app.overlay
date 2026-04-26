@@ -1,0 +1,12 @@
+/{
+    aliases{
+        app-led = &green_led_4;
+    };
+
+    leds{
+        heartbeat_led:led_4{
+           gpios = <&gpiod 12  GPIO_ACTIVE_HIGH> ;
+        };
+
+    };
+};

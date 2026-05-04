@@ -1,0 +1,6 @@
+board:
+  name: my_custom_board
+  full_name: My Custom Board
+  vendor: IOMICO
+  socs:
+    - name: stm32f407xx

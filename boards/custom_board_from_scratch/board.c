@@ -5,7 +5,7 @@
 
 void board_early_init_hook()
 {
-    printk("Board init message after console init\n");
+    printk("BOARD INITIALIZED\n");
     return 0;
 }
 

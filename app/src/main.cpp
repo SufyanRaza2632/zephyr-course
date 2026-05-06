@@ -5,7 +5,7 @@
 
 /* The devicetree node identifier for the "led0" alias. using DT_ALIAS */
 #define LED_NODE DT_ALIAS(app_led)
-#define LED_NODE_TEST DT_ALIAS(led0)
+#define LED_NODE_TEST DT_ALIAS(led1)
 /* The devicetree node identifier for the "led0" alias. using DT_NODELABEL*/
 //#define LED_NODE DT_NODELABEL(heartbeat_led)
 
@@ -40,6 +40,7 @@ int main(void)
         
         LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
+        printk("Hello WOrld");
     }
     return 0;
 }

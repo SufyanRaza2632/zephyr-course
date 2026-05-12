@@ -22,6 +22,7 @@
 		zephyr,canbus = &can2;
 	};
 
+
 	leds {
 		compatible = "gpio-leds";
 

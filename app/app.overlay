@@ -1,4 +1,9 @@
 /{
+
+    our_driver0:our_driver{
+        compatible = "our,driver";
+        status  = "okay";
+    };
     aliases{
         app-led = &green_led_4;
     };

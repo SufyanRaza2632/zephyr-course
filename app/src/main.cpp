@@ -2,11 +2,13 @@
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/drivers/sensor.h>
+#include "../drivers/our_driver/our_driver_custom_api.h"
 
 
 /* The devicetree node identifier for the "led0" alias. using DT_ALIAS */
 #define LED_NODE DT_ALIAS(app_led)
 #define LED_NODE_TEST DT_ALIAS(led1)
+#define TEST_VALUE 1234
 /* The devicetree node identifier for the "led0" alias. using DT_NODELABEL*/
 //#define LED_NODE DT_NODELABEL(heartbeat_led)
 
@@ -39,6 +41,10 @@ int main(void)
     if (gpio_pin_configure_dt(&led_test, GPIO_OUTPUT_ACTIVE) < 0) return 0;
     if(gpio_pin_set_dt(&led_test,0 ) < 0 ) return 0;
     int ret  = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
+
+    if (device_is_ready(driver)) {
+    our_driver_custom_data_update(driver, TEST_VALUE);
+}
 
     while (1) {
         //test();

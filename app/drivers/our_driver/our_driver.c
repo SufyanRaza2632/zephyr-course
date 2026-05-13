@@ -6,7 +6,28 @@
 #define LED_NODE_DRIV DT_ALIAS(led3)
 LOG_MODULE_REGISTER(our_driver,LOG_LEVEL_INF);
 
+struct our_driver_data {
+    int custom_value;
+};
+
+static struct our_driver_data data_iomico;
 static const struct gpio_dt_spec led_driv = GPIO_DT_SPEC_GET(LED_NODE_DRIV, gpios);
+
+
+int our_driver_custom_data_update(const struct device *dev, int value)
+{
+    struct our_driver_data *data =
+        (struct our_driver_data *)dev->data;
+
+    data->custom_value = value;
+
+    LOG_INF("custom_value changed to %d",
+            data->custom_value);
+
+    return 0;
+
+
+}
 static int sample_fetch_impl(const struct device *dev,
 				     enum sensor_channel chan)
 {
@@ -38,4 +59,4 @@ static int init(const struct device *dev)
  if (gpio_pin_configure_dt(&led_driv, GPIO_OUTPUT_ACTIVE) < 0) return 0;
  return 0;
 }
- DEVICE_DT_INST_DEFINE(0  ,init,NULL,NULL,NULL, POST_KERNEL,80, &api_iomico );
+ DEVICE_DT_INST_DEFINE(0  ,init,NULL,&data_iomico,NULL, POST_KERNEL,80, &api_iomico );

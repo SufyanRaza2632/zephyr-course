@@ -17,7 +17,7 @@
 
 static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED_NODE, gpios);
 static const struct gpio_dt_spec led_test = GPIO_DT_SPEC_GET(LED_NODE_TEST, gpios);
-const struct device* driver =DEVICE_DT_GET(DT_NODELABEL(our_driver0));
+//const struct device* driver =DEVICE_DT_GET(DT_NODELABEL(our_driver0));
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
@@ -40,27 +40,27 @@ int main(void)
 
     if (gpio_pin_configure_dt(&led_test, GPIO_OUTPUT_ACTIVE) < 0) return 0;
     if(gpio_pin_set_dt(&led_test,0 ) < 0 ) return 0;
-    int ret  = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
+    //int ret  = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
 
-    if (device_is_ready(driver)) {
-    our_driver_custom_data_update(driver, TEST_VALUE);
-}
+    //if (device_is_ready(driver)) {
+    //our_driver_custom_data_update(driver, TEST_VALUE);
+//}
 
     while (1) {
         //test();
-        if(led_state)
-                ret  = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
-        else
-                ret = sensor_sample_fetch_chan(driver, SENSOR_CHAN_AMBIENT_TEMP);
+      //  if(led_state)
+        //        ret  = sensor_channel_get(driver, SENSOR_CHAN_AMBIENT_TEMP, &val);
+     //   else
+        //        ret = sensor_sample_fetch_chan(driver, SENSOR_CHAN_AMBIENT_TEMP);
         if (gpio_pin_toggle_dt(&led) < 0) return 0;
         if (gpio_pin_toggle_dt(&led_test) < 0) return 0;
 
         led_state = !led_state;
         led_test_state = !led_test_state;
         
-        LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
+        //LOG_INF("LED state: %s", led_state ? "ON" : "OFF");
         k_msleep(CONFIG_APP_HEARTBEAT_PERIOD_MS);
-        printk("Hello WOrld/n");
+        //printk("Hello WOrld/n");
     }
     return 0;
 }

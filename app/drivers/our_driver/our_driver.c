@@ -28,6 +28,13 @@ int our_driver_custom_data_update(const struct device *dev, int value)
 
 
 }
+int our_driver_custom_data_read(const struct device *dev)
+{
+    struct our_driver_data *data =
+        (struct our_driver_data *)dev->data;
+
+    return data->custom_value;
+}
 static int sample_fetch_impl(const struct device *dev,
 				     enum sensor_channel chan)
 {
